@@ -1,1 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #DFE6E6;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.todo{
+    background-color: #F0F2F2;
+    margin-top: 100px;
+    padding: 40px;
+    border-radius: 20px;
+    width: 700px;
+    max-width: 700px;
+}
+
+.todo__title{
+    font-size: 2rem;
+    color: #262626;
+    margin-bottom: 40px;
+}
+
+
+
+/* Form */
+.todo__form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    margin-bottom: 20px;
+}
+
+.todo__input{
+    flex: 1; 
+    background-color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    border: none;
+    border-bottom: 2px solid #8b8b8b;
+    outline: none;
+    padding: 0.5rem ;
+}   
+
+.todo__input:focus {
+    border-bottom: 2px solid #222222;
+}
+
+.todo__add-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 40px;
+}
+
+.todo__img{
+    display: block;
+    width: 100%;
+}
+
+/* Filter */
+.todo__filter-container{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.task__filter-label{
+    color: #555;
+    font-family: inherit;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.task__filter-select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 10px; 
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    padding: 8px 30px 8px 10px; 
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+
+    background-image: url('./image/flecha-abajo.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+    background-size: 12px;
+}
+
+.task__filter-select:hover {
+    border-color: #aaa;
+}
+
+/* List */
+.todo__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.todo__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 16px;
+    border: 1.5px solid #ccc;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.todo__checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #555; 
+    margin-right: 10px;
+}
+
+.todo__text {
+    flex: 1;
+    font-size: 1rem;
+    color: #333;
+    margin: 0 10px;
+}
+
+/* Estilo para cuando el checkbox esta marcado*/
+.todo__checkbox:checked + .todo__text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.todo__edit-btn{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.todo__delete-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+}
+
+.todo__img,
+.todo__edit-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* "Footer" del todo*/
+.todo__remaining{
+    color: #414141;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.todo__quote{
+    color: #999;
+    font-size: 1rem;
+    font-weight: 500;
+}

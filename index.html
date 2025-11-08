@@ -1,13 +1,47 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>todo-typescript</title>
-  </head>
-  <body>
-    <div id="app"></div>
+</head>
+
+<body>
+    <!-- Main -->
+	<main class="main">
+		<section class="todo">
+			<h1 class="todo__title">Your To Do</h1>
+
+			<!-- Form -->
+			<div class="todo__form">
+				<input class="todo__input" type="text" placeholder="Add new task">
+				<button class="todo__add-btn" type="button">
+					<img class="todo__img" src="/src/image/agregar.svg" alt="Add task">
+				</button>
+			</div>
+
+			<!-- Filter -->
+			<div class="todo__filter-container">
+				<label class="task__filter-label" for="task__filter-label" >Filtrar tareas :</label>
+				<select class="task__filter-select" name="Options" id="priorityFilter">
+					<option value="All">Todas</option>
+					<option value="Pending">Pendientes</option>
+					<option value="Completed">Completadas</option>
+				</select>
+			</div>
+
+			<!-- List -->
+			<ul class="todo__list">
+			</ul>
+
+			<!-- "Footer" -->
+			<p class="todo__remaining">xd </p>
+			<p class="todo__quote">"Hacer lo que amas es la piedra angular para tener abundancia en tu vida, mucho texto." - Wayne Dyer</p>
+		</section>
+	</main>
     <script type="module" src="/src/main.ts"></script>
-  </body>
+</body>
+
 </html>
