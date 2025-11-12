@@ -1,191 +1,531 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
+:root {
+    --Font-Primary: "Montserrat";
+
+    /* Colores Base Neumorfismo */
+    --Color-Primary: #F0F2F2;
+    --Color-Secundary: #DFE6E6;
+    --Color-Background: #DFE6E6;
+
+    /* Sombras Neumórficas */
+    --Shadow-Light: #ffffff;
+    --Shadow-Dark: #bec4c4;
+
+    /* Colores de Acción */
+    --Color-CTA: #0070e4;
+    --Color-CTA-Text: var(--Color-Primary);
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    background-color: #DFE6E6;
-    font-family: "Montserrat", sans-serif;
+body {
+    background-color: var(--Color-Background);
+    font-family: var(--Font-Primary);
     display: flex;
     justify-content: center;
-}
-
-.todo{
-    background-color: #F0F2F2;
-    margin-top: 100px;
-    padding: 40px;
-    border-radius: 20px;
-    width: 700px;
-    max-width: 700px;
-}
-
-.todo__title{
-    font-size: 2rem;
-    color: #262626;
-    margin-bottom: 40px;
+    min-height: 100vh;
 }
 
 
+/* Section Todo */
+.todo {
+    width: 1000px;
+    margin: 60px 0;
+    padding: 60px;
+    border-radius: 50px;
+    background: var(--Color-Background);
+    /* box-shadow: 20px 20px 60px var(--Shadow-Dark),
+                -20px -20px 60px var(--Shadow-Light); */
+    box-shadow: 4px 4px 8px var(--Shadow-Dark),
+                -4px -4px 8px var(--Shadow-Light);
+}
 
-/* Form */
-.todo__form{
+
+/* Header__ToDo */
+.todo__header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
-
-    margin-bottom: 20px;
+    align-items: center;
+    padding-bottom: 20px;
 }
 
-.todo__input{
-    flex: 1; 
-    background-color: #FFFFFF;
-    font-size: 1.2rem;
+.todo__header-title {
+    font-weight: 600;
+    font-size: 2rem;
+    color: #333;
+}
+
+.todo__button-add {
+    font-family: var(--Font-Primary);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    background: var(--Color-CTA);
+    color: var(--Color-CTA-Text);
+    font-size: 16px;
     font-weight: 500;
-
-    border: none;
-    border-bottom: 2px solid #8b8b8b;
-    outline: none;
-    padding: 0.5rem ;
-}   
-
-.todo__input:focus {
-    border-bottom: 2px solid #222222;
-}
-
-.todo__add-btn {
-    background: none;
-    border: none;
-    padding: 0;
     cursor: pointer;
-    width: 40px;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.todo__img{
-    display: block;
-    width: 100%;
-}
 
-/* Filter */
-.todo__filter-container{
-    margin-bottom: 20px;
+/* Filters__Container */
+.todo__container-filters {
     display: flex;
     align-items: center;
+    gap: 20px;
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-radius: 30px;
+    background: var(--Color-Background);
+    box-shadow: inset 5px 5px 10px var(--Shadow-Dark),
+        inset -5px -5px 10px var(--Shadow-Light);
 }
 
-.task__filter-label{
+.search__container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search__input {
+    width: 90%;
+    padding: 10px 10px 10px 50px;
+    border: none;
+    border-radius: 20px;
+    font-family: var(--Font-Primary);
+    font-size: 15px;
+    color: #333;
+    background: var(--Color-Background);
+    outline: none;
+    box-shadow: 4px 4px 8px var(--Shadow-Dark),
+                -4px -4px 8px var(--Shadow-Light);
+}
+
+.search__icon {
+    position: absolute;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    color: #888;
+}
+
+.control__group {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.control__group-label {
+    font-size: 15px;
     color: #555;
-    font-family: inherit;
+    margin-right: 8px;
     font-weight: 500;
-    margin-right: 10px;
 }
 
-.task__filter-select{
-    appearance: none;
+.control__group-select {
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
 
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 10px; 
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 400;
-    color: #333;
-    padding: 8px 30px 8px 10px; 
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.2s;
-
-    background-image: url('./image/flecha-abajo.png');
-    background-repeat: no-repeat;
-    background-position: right 10px center; 
-    background-size: 12px;
-}
-
-.task__filter-select:hover {
-    border-color: #aaa;
-}
-
-/* List */
-.todo__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.todo__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 18px 16px;
-    border: 1.5px solid #ccc;
+    background-color: var(--Color-Secundary);
+    padding: 10px 40px 10px 20px;
+    border: none;
     border-radius: 20px;
-    margin-bottom: 10px;
-    background-color: #fff;
-}
-
-.todo__checkbox {
-    width: 18px;
-    height: 18px;
-    accent-color: #555; 
-    margin-right: 10px;
-}
-
-.todo__text {
-    flex: 1;
-    font-size: 1rem;
     color: #333;
-    margin: 0 10px;
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1),
+        -4px -4px 8px rgba(255, 255, 255, 0.6);
 }
 
-/* Estilo para cuando el checkbox esta marcado*/
-.todo__checkbox:checked + .todo__text {
+.control__group-select:hover {
+    background-color: var(--Color-Background);
+}
+
+
+.select__arrow-icon {
+    position: absolute;
+    right: 15px;
+    width: 16px;
+    height: 16px;
+    color: #000000;
+    pointer-events: none;
+}
+
+.tasks__container{
+    padding: 20px 0px;
+}
+
+.tasks__list{
+    list-style: none;
+}
+
+
+.tasks__item {
+    background-color: var(--Color-Background);
+    display: flex;
+    align-items: center; 
+    gap: 20px; 
+    margin: 20px 0px;
+    padding: 15px 28px;
+    border-radius: 25px;
+    box-shadow: 8px 8px 24px var(--Shadow-Dark),
+                -8px -8px 24px var(--Shadow-Light);
+    transition: all 0.3s ease;
+}
+
+.tasks__item:hover {
+    box-shadow: 12px 12px 30px var(--Shadow-Dark),
+                -12px -12px 30px var(--Shadow-Light);
+    transform: translateY(-2px); 
+}
+
+.tasks__checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--Color-Background);
+    box-shadow: inset 3px 3px 6px var(--Shadow-Dark),
+                inset -3px -3px 6px var(--Shadow-Light);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* Evita que se deforme */
+}
+
+.tasks__checkbox:checked {
+    background: var(--Color-CTA);
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2),
+                inset -3px -3px 6px rgba(255, 255, 255, 0.1);
+}
+
+.tasks__checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tasks__item--completed {
+    opacity: 0.6;
+}
+
+.tasks__item--completed .tasks__title,
+.tasks__item--completed .tasks__description {
     text-decoration: line-through;
     color: #999;
 }
 
-.todo__edit-btn{
-    background: none;
-    border: none;
-    padding: 0;
+.tasks__info {
+    flex: 1; /* ← AGREGAR ESTO - Ocupa todo el espacio disponible */
+}
+
+.tasks__info-text{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.tasks__title{
+    color: #494949;
+    font-weight: 600;
+}
+
+.tasks__priority-badge{
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.tasks__priority-badge--high{
+    background-color: rgb(228, 202, 202);
+    color: #c00;
+}
+
+.tasks__priority-badge--medium {
+    background-color: #f1e0ac;
+    color: #c5a101;
+}
+
+.tasks__priority-badge--low {
+    background-color: #c8f0c3;
+    color: #3d792b;
+}
+
+.tasks__description{
+    color: #58595a;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.tasks__date {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+
+.tasks__btn{
+    display: flex;
+    gap: 20px;
+}
+
+.tasks__btn-edit,
+.tasks__btn-delete {
+    display: block;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
+    transition: all 0.2s ease;
+    color: #666;
+}
+
+
+.tasks__btn-edit:hover {
+    color: var(--Color-CTA);
+    transform: scale(1.15);
+}
+
+.tasks__btn-delete:hover {
+    color: #e74c3c; /* Rojo para eliminar */
+    transform: scale(1.15);
+}
+
+
+
+
+
+
+
+
+
+
+/* ============================================
+   MODAL
+============================================ */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Oculto por defecto */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex; /* Mostrar cuando tenga clase 'active' */
+}
+
+.modal__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.modal__content {
+    position: relative;
+    width: 600px;
+    max-width: 90%;
+    background: var(--Color-Background);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 20px 20px 60px var(--Shadow-Dark),
+                -20px -20px 60px var(--Shadow-Light);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header del Modal */
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.modal__title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.modal__close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 12px;
+    background: var(--Color-Background);
+    box-shadow: 4px 4px 8px var(--Shadow-Dark),
+                -4px -4px 8px var(--Shadow-Light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__close:hover {
+    box-shadow: 6px 6px 12px var(--Shadow-Dark),
+                -6px -6px 12px var(--Shadow-Light);
+}
+
+.modal__close svg {
+    width: 20px;
+    height: 20px;
+    color: #666;
+}
+
+/* Formulario */
+.modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form__label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.form__input,
+.form__textarea,
+.form__select {
+    font-family: var(--Font-Primary);
+    font-size: 15px;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 15px;
+    background: var(--Color-Background);
+    color: #333;
+    outline: none;
+    box-shadow: inset 4px 4px 8px var(--Shadow-Dark),
+                inset -4px -4px 8px var(--Shadow-Light);
+    transition: all 0.2s ease;
+}
+
+.form__input:focus,
+.form__textarea:focus,
+.form__select:focus {
+    box-shadow: inset 6px 6px 12px var(--Shadow-Dark),
+                inset -6px -6px 12px var(--Shadow-Light);
+}
+
+.form__textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Select personalizado */
+.form__select-wrapper {
+    position: relative;
+}
+
+.form__select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.form__select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 18px;
     height: 18px;
-    margin-right: 20px;
+    color: #666;
+    pointer-events: none;
 }
 
-.todo__delete-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    width: 12px;
-    height: 12px;
+/* Botones del formulario */
+.form__actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
 }
 
-.todo__img,
-.todo__edit-img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-/* "Footer" del todo*/
-.todo__remaining{
-    color: #414141;
-    font-size: 1rem;
+.form__btn {
+    flex: 1;
+    font-family: var(--Font-Primary);
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 15px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.todo__quote{
-    color: #999;
-    font-size: 1rem;
-    font-weight: 500;
+.form__btn--cancel {
+    background: var(--Color-Background);
+    color: #666;
+    box-shadow: 4px 4px 8px var(--Shadow-Dark),
+                -4px -4px 8px var(--Shadow-Light);
+}
+
+.form__btn--cancel:hover {
+    box-shadow: 6px 6px 12px var(--Shadow-Dark),
+                -6px -6px 12px var(--Shadow-Light);
+}
+
+.form__btn--submit {
+    background: var(--Color-CTA);
+    color: var(--Color-CTA-Text);
+    box-shadow: 4px 4px 12px rgba(0, 112, 228, 0.3);
+}
+
+.form__btn--submit:hover {
+    box-shadow: 6px 6px 16px rgba(0, 112, 228, 0.4);
+    transform: translateY(-2px);
+}
+
+.form__btn--submit:active {
+    transform: translateY(0);
 }

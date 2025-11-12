@@ -10,37 +10,74 @@
 
 <body>
     <!-- Main -->
-	<main class="main">
-		<section class="todo">
-			<h1 class="todo__title">Your To Do</h1>
+    <main class="main">
 
-			<!-- Form -->
-			<div class="todo__form">
-				<input class="todo__input" type="text" placeholder="Add new task">
-				<button class="todo__add-btn" type="button">
-					<img class="todo__img" src="/src/image/agregar.svg" alt="Add task">
-				</button>
-			</div>
+        <!-- Container Todo -->
+        <section class="todo">
 
-			<!-- Filter -->
-			<div class="todo__filter-container">
-				<label class="task__filter-label" for="task__filter-label" >Filtrar tareas :</label>
-				<select class="task__filter-select" name="Options" id="priorityFilter">
-					<option value="All">Todas</option>
-					<option value="Pending">Pendientes</option>
-					<option value="Completed">Completadas</option>
-				</select>
-			</div>
+            <!-- Header__Todo -->
+            <div class="todo__header">
+                <h1 class="todo__header-title">My Tasks</h1>
+                <button class="todo__button-add">
+                    <p class="todo__button-text">Add Task</p>
+                </button>
+            </div>
 
-			<!-- List -->
-			<ul class="todo__list">
-			</ul>
+            <!-- Filters__Container -->
+            <div class="todo__container-filters">
 
-			<!-- "Footer" -->
-			<p class="todo__remaining">xd </p>
-			<p class="todo__quote">"Hacer lo que amas es la piedra angular para tener abundancia en tu vida, mucho texto." - Wayne Dyer</p>
-		</section>
-	</main>
+                <div class="search__container">
+                    <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <input class="search__input" type="text" placeholder="Search Tasks ...">
+                </div>
+
+                <div class="control__group">
+                    <label class="control__group-label" for="sort-tasks">Sort By:</label>
+                    <select class="control__group-select" id="sort-tasks" name="sort-tasks">
+                        <option value="default">Default</option>
+                        <option value="high">High</option>
+                        <option value="medium">Mid</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <svg class="select__arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                    </svg>
+                </div>
+
+
+                <div class="control__group">
+                    <label class="control__group-label" for="filter-category">State:</label>
+                    <select class="control__group-select" id="filter-category" name="filter-category">
+                        <option value="default">Default</option>
+                        <option value="done">Done</option>
+                        <option value="todo">To Do</option>
+                    </select>
+                    <svg class="select__arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                    </svg>
+                </div>
+            </div>
+
+
+            <!-- Tasks__Container -->
+            <div class="tasks__container">
+                <ul class="tasks__list">
+                    
+                </ul>
+            </div>
+
+            <p class="todo__remaining">Pending tasks : 0</p>
+        </section>
+
+    </main>
     <script type="module" src="/src/main.ts"></script>
 </body>
 

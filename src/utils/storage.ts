@@ -1,15 +1,15 @@
 import { STORAGE_KEY } from '../constants';
 import type { Task } from '../types/todo.types';
 
-// Funcion para guardar las tareas en LocalStorage
+
 export const saveTasks = (tasks: Task[]): void => {
     
     const jsonTasks = JSON.stringify(tasks);    
-    // Con esta linea guardamos en LocalStorage el "string" de array con su clave (key)
+    // Guardamos en LocalStorage el "string" de array con su clave (key)
     localStorage.setItem(STORAGE_KEY, jsonTasks);   
 }
 
-// Funcion para obtener las tareas del LocalStorage
+
 export const getTasks = (): Task[] => { 
     // Con esta linea obtenemos el "string de array" guardado en LocalStorage atravez de su clave (key)
     const storedTasks = localStorage.getItem(STORAGE_KEY); 
@@ -30,8 +30,7 @@ export const getTasks = (): Task[] => {
     }));
 };
 
-// Funcion para Limpiar LocalStorage
+
 export const clearTasks = (): void => {
-    // Removemos lo que haya en LocalStorage asigando a la clave(key)
     localStorage.removeItem(STORAGE_KEY);   
 }
