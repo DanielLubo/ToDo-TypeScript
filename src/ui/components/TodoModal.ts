@@ -3,7 +3,6 @@ import type { Priority } from "../../types/todo.types";
 class TodoModal {
     private modal: HTMLElement;
 
-    
     constructor() {
         // Constructor se encarga de "cargar" el metodo que crea el modal dinamicamente
         this.modal = this.createModal();

@@ -23,6 +23,7 @@ class App {
         this.setupAddTaskButton();
         this.setupModalSubmit();
         this.setupTaskEvents();
+        this.setupSearch();
         this.setupFilters();
         this.setupSort();
         this.renderTasks();
@@ -111,6 +112,32 @@ class App {
         counterElement.textContent = `${count === 1 ? 'Pending Task' : 'Pending Tasks'}: ${count}`;
     }
 
+    private setupSearch(): void {
+        const inputSearch = document.querySelector('.search__input') as HTMLInputElement;
+
+        inputSearch.addEventListener('input', () => {
+            const searchTerm = inputSearch.value.trim(); // Limpiamos espacios en blanco o vacios
+            const filteredTasks = this.searchTasks(searchTerm);
+
+            this.todoList.renderTask(filteredTasks);
+            this.updatePendingCount();
+        });
+    }
+
+    private searchTasks(searchTerm: string): Task[] {
+        const allTasks = this.todoManager.getAllTasks();
+        if(!searchTerm) return allTasks;
+
+        const searchLower = searchTerm.toLowerCase();
+
+        return allTasks.filter((task) => {
+            // Verificamos si los valores ingresado en el input estan incluidos
+            const titleMatch = task.title.toLowerCase().includes(searchLower);
+            const descriptionMatch = task.title.toLowerCase().includes(searchLower);
+            return titleMatch || descriptionMatch;
+        })
+    }
+
     private setupFilters(): void {
         const filterSelect = document.querySelector('#filter-category') as HTMLSelectElement;
 
@@ -118,7 +145,7 @@ class App {
 
         filterSelect.addEventListener('change', () => {
             const filterValue = filterSelect.value;
-            const filteredTasks = this.getFilteredTasks(filterValue);
+            const filteredTasks = this.getFilteredTasks(filterValue); 
 
             this.todoList.renderTask(filteredTasks);
             this.updatePendingCount();

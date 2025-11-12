@@ -1,10 +1,7 @@
 import type { Task } from "../../types/todo.types";
 
-
 class TodoList {
-
     private container: HTMLElement;
-
 
     constructor() {
         this.container = document.querySelector('.tasks__list') as HTMLElement;
@@ -13,12 +10,8 @@ class TodoList {
     renderTask(tasks: Task[]): void {
         // Limpiamos el contenedor
         this.container.innerHTML = '';
-
-        if(tasks.length === 0){
-            
-            return;
-        }
-
+        if(tasks.length === 0)return;
+        
         // Recorremos el array de tareas, para cada tarea creamos su HTML (con el metodo createTaskHTML) y lo unimos todo con join
         const tasksHTML = tasks.map(task => this.createTaskHTML(task)).join('');
 
@@ -30,7 +23,6 @@ class TodoList {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    
     private createTaskHTML(task: Task): string {
         // Formateamos la fecha
         const date = new Date(task.createdAt);
@@ -45,11 +37,6 @@ class TodoList {
             task.priority === 'high' ? 'tasks__priority-badge--high' :
             task.priority === 'medium' ? 'tasks__priority-badge--medium' :
             'tasks__priority-badge--low';
-
-        // const priorityText = 
-        //     task.priority === 'high' ? 'High' :
-        //     task.priority === 'medium' ? 'Medium' :
-        //     'Low'
 
         return `
             <li class="tasks__item ${task.checked ? 'tasks__item--completed' : ''}" data-id="${task.id}">
