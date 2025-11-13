@@ -2,6 +2,8 @@ import type { Priority } from "../../types/todo.types";
 
 class TodoModal {
     private modal: HTMLElement;
+    private isEditMode: boolean = false;
+    private currentTaskId: string | null = null;
 
     constructor() {
         // Constructor se encarga de "cargar" el metodo que crea el modal dinamicamente
@@ -89,9 +91,44 @@ class TodoModal {
         this.modal.classList.add('active');
     }
 
+    openForEditModal(id: string, title: string, description: string, priority: Priority): void {
+        this.isEditMode = true;
+        this.currentTaskId = id;
+
+        (this.modal.querySelector('#taskTitle') as HTMLInputElement ).value = title;
+        (this.modal.querySelector('#taskDescription') as HTMLTextAreaElement).value = description;
+        (this.modal.querySelector('#taskPriority') as HTMLSelectElement).value = priority;
+
+        const titleModal = this.modal.querySelector('#modalTitle') as HTMLHeadElement;
+        titleModal.textContent = 'Edit Task';
+
+        const buttonSubmit = this.modal.querySelector('#submitBtn') as HTMLButtonElement;
+        buttonSubmit.textContent = 'Save Changes';
+
+        this.openModal();
+    }
+
     closeModal(): void{
         this.modal.classList.remove('active');
         this.clearForm(); // Limpiamos el "contenido" del modal
+
+        // Reseteamos el modo de edicion
+        this.isEditMode = false;
+        this.currentTaskId = null;
+
+        const titleModal = this.modal.querySelector('#modalTitle') as HTMLHeadElement;
+        titleModal.textContent = 'Add New Task';
+
+        const buttonSubmit = this.modal.querySelector('#submitBtn') as HTMLButtonElement;
+        buttonSubmit.textContent = 'Add Task';
+    }
+
+    isEditing(): boolean{
+        return this.isEditMode;
+    }
+
+    getCurrentTaskId(): string | null {
+        return this.currentTaskId;
     }
 
     private clearForm(): void {

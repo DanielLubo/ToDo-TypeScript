@@ -53,18 +53,26 @@ class App {
      */
     setupModalSubmit() {
         const form = document.querySelector('#taskForm') as HTMLFormElement;
+        if(!form) return;
 
         form.addEventListener('submit', (e) => {
             e.preventDefault(); // Prevenimos el comportamiento predeterminado del formulario
 
             // Guardamos en la constante data = el objeto que es retornado del metodo getFormData
             const data = this.todoModal.getFormData();
-
             // Verfificamos si viene vacio para prevenir la continuacion
             if (!data) return;
             const { title, description, priority } = data;
 
-            this.todoManager.addTask(title, description, priority);
+            if(this.todoModal.isEditing()){
+                const taskId = this.todoModal.getCurrentTaskId();
+                if(!taskId) return;
+
+                this.todoManager.updateTask(taskId, title, description, priority);
+            } else {
+                this.todoManager.addTask(title, description, priority);
+            }
+            
             this.todoModal.closeModal();
             this.renderTasks(); // Re-renderiza aplicando filtros activos
         });
@@ -89,7 +97,7 @@ class App {
 
                 this.todoManager.toggleTask(taskId);
                 this.renderTasks(); // Re-renderiza manteniendo filtros activos
-            }
+            };
 
             // Boton para Eliminar tarea
             if (target.closest('.tasks__btn-delete')) {
@@ -100,8 +108,20 @@ class App {
                 if (confirm('Estas seguro de que quieres eliminar esta tarea?')) {
                     this.todoManager.deleteTask(taskId);
                     this.renderTasks(); // Re-renderiza manteniendo filtros activos
-                }
-            }
+                };
+            };
+
+            // Boton para Editar tarea
+            if (target.closest('.tasks__btn-edit')) {
+                const taskItem = target.closest('.tasks__item') as HTMLElement;
+                const taskId = taskItem?.dataset.id;
+                if(!taskId) return;
+
+                const task = this.todoManager.getTaskById(taskId);
+                if(!task) return;
+
+                this.todoModal.openForEditModal(task.id, task.title, task.description, task.priority);
+            };
         })
     }
 
@@ -119,7 +139,7 @@ class App {
         });
     }
 
-    // Configuracion  del filtro por estado (todas/completadas/pendientes)
+    // Configuracion del filtro por estado (todas/completadas/pendientes)
     private setupFilters(): void {
         const filterSelect = document.querySelector('#filter-category') as HTMLSelectElement;
         if (!filterSelect) return;
@@ -191,7 +211,6 @@ class App {
      * Las tareas con la prioridad seleccionada aparecen primero,
      * luego el resto ordenado por cercanía al peso seleccionado
      */
-
     private applySort(tasks: Task[]): Task[] {
         if (this.currentSort === 'default') return tasks;
 

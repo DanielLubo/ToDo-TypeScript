@@ -69,6 +69,24 @@ class TodoManager {
         return true;
     }
 
+    updateTask(id: string, title: string, description: string, priority: Priority): boolean {
+        const taskById = this.tasks.find((task) => task.id === id);
+
+        if(!taskById) return false; // Verificamos si no existe la tarea
+    
+        // Si llegamos a este punto es porque si existe la tarea, asi que nos ahorramos el else
+        taskById.title = title;
+        taskById.description = description;
+        taskById.priority = priority;
+
+        saveTasks(this.tasks);
+        return true;
+    }
+
+    getTaskById(id: string): Task | undefined{
+        return this.tasks.find((task) => task.id === id);
+    }
+
     // Metodo para obtener todas las tareas
     getAllTasks(): Task[]{
         return this.tasks;
