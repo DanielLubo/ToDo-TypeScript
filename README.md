@@ -307,10 +307,6 @@ This project demonstrates proficiency in:
 - GitHub: [@DanielLubo](https://github.com/DanielLubo)
 - LinkedIn: [Daniel Felipe Lubo Realpe](https://www.linkedin.com/in/danilubo/)
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## 🙏 Acknowledgments
 
 - Inspired by modern task management applications
