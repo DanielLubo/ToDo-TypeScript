@@ -265,28 +265,6 @@ Search updates as you type without needing to press Enter:
 - Debouncing not needed for small datasets
 - Case-insensitive matching
 
-## 🚀 Future Enhancements
-
-### Planned Features
-- [ ] **Animations**: Smooth transitions for task actions
-- [ ] **Dark Mode**: Toggle between light/dark themes
-- [ ] **i18n Support**: Multi-language support (English/Spanish)
-- [ ] **Drag & Drop**: Reorder tasks by dragging
-- [ ] **Due Dates**: Add deadlines to tasks
-- [ ] **Categories/Tags**: Organize tasks with custom tags
-- [ ] **Export/Import**: Save tasks to JSON file
-- [ ] **Task Notes**: Add detailed notes to tasks
-- [ ] **Subtasks**: Break down tasks into smaller steps
-- [ ] **Statistics**: Visual charts of task completion
-
-### Technical Improvements
-- [ ] Unit tests with Vitest
-- [ ] E2E tests with Playwright
-- [ ] Better error handling
-- [ ] Accessibility improvements (ARIA labels)
-- [ ] PWA support (offline functionality)
-- [ ] Backend integration (optional)
-
 ## 🎓 Learning Outcomes
 
 This project demonstrates proficiency in:
@@ -306,23 +284,3 @@ This project demonstrates proficiency in:
 
 - GitHub: [@DanielLubo](https://github.com/DanielLubo)
 - LinkedIn: [Daniel Felipe Lubo Realpe](https://www.linkedin.com/in/danilubo/)
-
-## 🙏 Acknowledgments
-
-- Inspired by modern task management applications
-- Built as a learning project to master TypeScript and architectural patterns
-- Thanks to the developer community for best practices and guidance
-
----
-
-⭐ **If you found this project helpful, please consider giving it a star!** ⭐
-
----
-
-### 📊 Project Stats
-
-- **Lines of Code**: ~1,200
-- **Development Time**: Multiple sessions over several days
-- **Commits**: 20+ with meaningful messages
-- **Features**: 10+ major functionalities
-- **Architecture**: Modular OOP design
